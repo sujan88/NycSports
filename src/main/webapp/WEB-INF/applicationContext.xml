@@ -28,7 +28,7 @@
     create-drop: drop the schema at the end of the session.
    These options intended to be developers tools and not to facilitate any production level databases 
             <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
--->
+   sujan-->
       
       <property name="jpaProperties">
          <props>
@@ -44,7 +44,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/nycsports" />
 		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="Ymcmb2017$" />
 	</bean>
 
  

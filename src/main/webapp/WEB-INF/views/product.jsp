@@ -28,10 +28,10 @@
 					<strong>manufacturer</strong> : ${product.manufacturer}
 				</p>
 				<p>
-					<strong>category</strong> : ${product.category}
+					<strong>category</strong> : ${product.category.name}
 				</p>
 				<p>
-					<strong>Condition</strong> : ${product.condition}
+					<strong>Status</strong> : ${product.status}
 				</p>
 				<p>
 					<strong>Availble units in stock </strong> : ${product.unitsInStock}

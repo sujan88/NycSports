@@ -4,11 +4,13 @@
 
 <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css"	rel="stylesheet">
 
-		<div class="jumbotron">
-			<h1>
+		<div class="jumbotron" style="background-color:white">
+		 
+			
 				<tiles:insertAttribute name="heading" />
-			</h1>
+	
 			<p>
 				<tiles:insertAttribute name="tagline" />
 			</p>
+		
 		</div>

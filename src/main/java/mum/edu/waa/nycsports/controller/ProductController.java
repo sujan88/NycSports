@@ -42,8 +42,6 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-//	@Autowired
-//	private ProductValidator productValidator;
 
 	@RequestMapping
 	public String list(Model model) {
@@ -91,7 +89,8 @@ public class ProductController {
 	}
 	   
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product newProduct, BindingResult result, HttpServletRequest request) {
+	public String processAddNewProductForm(@ModelAttribute("newProduct")  Product newProduct, BindingResult result, HttpServletRequest request) {
+	System.out.println("EEERRRRR");
 		if(result.hasErrors()) {
 			return "addProduct";
 		}
@@ -102,7 +101,7 @@ public class ProductController {
 			throw new RuntimeException("Attempting to bind disallowed fields: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 		
-		/*MultipartFile productImage = newProduct.getProductImage();
+		MultipartFile productImage = newProduct.getProductImage();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 			
 		//isEmpty means file exists BUT NO Content
@@ -112,7 +111,7 @@ public class ProductController {
 		       } catch (Exception e) {
 				throw new RuntimeException("Product Image saving failed", e);
 		   }
-		   }*/
+		   }
 
 	   	productService.addProduct(newProduct);
 		return "redirect:/products";

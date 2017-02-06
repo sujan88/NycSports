@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	addToCart = function(productId){
 			$.ajax({
-		 		url: '/webstore08/rest/cart/add/' + productId,
+		 		url: '/NycSports/rest/cart/add/' + productId,
 		 		type: 'PUT',
 				dataType: "json",
 				success: function(response){
@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 	   removeFromCart = function(productId) {
 			$.ajax({
-				url: '/webstore08/rest/cart/remove/'+ productId,
+				url: '/NycSports/rest/cart/remove/'+ productId,
 		 		type: 'PUT',
 				dataType: "json",
 			 	 success: function (response) {
@@ -64,7 +64,7 @@ $(document).ready(function() {
 			$("#result").append( '<H4 align="center">' + product.name + '<H4>');               	 
 			$("#result").append( '<H4 align="center">' + product.unitPrice + '<H4>');                
 			$("#result").append( '<H4 align="center">' + product.manufacturer + '<H4>');                
-			$("#result").append( '<H4 align="center">' + product.category + '<H4>');                
+			$("#result").append( '<H4 align="center">' + product.category.name + '<H4>');                
 			$("#result").attr("style", "display: block")
 	 		} 
 	 

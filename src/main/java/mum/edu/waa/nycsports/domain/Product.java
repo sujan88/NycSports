@@ -50,12 +50,17 @@ public class Product implements Serializable {
 	@Transient 
 	private MultipartFile  productImage;
 
-   @DateTimeFormat(pattern = "MM-dd-yyyy")
+	@DateTimeFormat(style = "MM-dd-yyyy")
 	private Date activeDate;
 	
-	
-	public Product() {
 
+	private String status;
+	
+	
+
+
+	public Product() {
+		category= new Category();
 }
 
 
@@ -169,6 +174,16 @@ public class Product implements Serializable {
 		this.activeDate = activeDate;
 	}
 
+
+	public String getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 
 }
