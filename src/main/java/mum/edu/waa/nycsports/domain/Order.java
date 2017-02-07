@@ -1,107 +1,92 @@
 package mum.edu.waa.nycsports.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.validation.Valid;
 
 @Entity
-@Table(name = "purchaseOrder")
+public class Order  implements Serializable{
 
-public class Order implements Serializable {
-	
-	private static final long serialVersionUID = 5784L;
+	private static final long serialVersionUID = -3560539622417210365L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id ;
-	
-	@Version
-	@Column(name = "version")
-	private int version = 0;
+	private Long orderId;
+	private Cart cart;
 
-	@Column
-	private String orderNumber;
-	
-	@OneToMany(mappedBy = "order")
-	private List<OrderItem> items = new ArrayList<OrderItem>();
+	private Customer customer;
+	private ShippingDetail shippingDetail;
 
-	@OneToOne
-	private OrderPayment payments;
-	
-	@ManyToOne
-	private User customer;
-
-	
-	public Order(){}
-	public Order(String orderNumber, List<OrderItem> items, OrderPayment payments) {
-
-		this.orderNumber = orderNumber;
-		this.items = items;
-		this.payments = payments;
+	public Order() {
+		this.customer = new Customer();
+		this.shippingDetail = new ShippingDetail();
 	}
 
-
-
-	public void setPayments(OrderPayment payments) {
-		this.payments = payments;
+	public Long getOrderId() {
+		return orderId;
 	}
 
-	public Long getId() {
-		return id;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Cart getCart() {
+		return cart;
 	}
 
-	public int getVersion() {
-		return version;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public String getOrderNumber() {
-		return orderNumber;
-	}
-
-	public void setOrderNumber(String orderNumber) {
-		this.orderNumber = orderNumber;
-	}
-
-	public List<OrderItem> getItems() {
-		return items;
-	}
-
-	public void setItems(List<OrderItem> items) {
-		this.items = items;
-	}
-
-	public void addOrderItem(OrderItem orderItem) {
-		this.items.add(orderItem);
-		orderItem.setOrder(this);
-	}
-	public User getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
-	public void setCustomer(User customer) {
+
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
+	public ShippingDetail getShippingDetail() {
+		return shippingDetail;
+	}
+
+	public void setShippingDetail(ShippingDetail shippingDetail) {
+		this.shippingDetail = shippingDetail;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 829;
+		int result = 1;
+		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		if (orderId == null) {
+			if (other.orderId != null)
+				return false;
+		} else if (!orderId.equals(other.orderId))
+			return false;
+		return true;
+	}
+
 
 }

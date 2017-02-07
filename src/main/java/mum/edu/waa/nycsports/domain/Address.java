@@ -25,6 +25,8 @@ public class Address implements Serializable{
 
   	private String zipCode;
 
+	private String country;
+
   	
 	public String getStreet() {
 		return street;
@@ -49,5 +51,13 @@ public class Address implements Serializable{
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	
+
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
 	}
 }

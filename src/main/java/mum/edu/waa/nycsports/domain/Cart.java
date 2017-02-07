@@ -19,7 +19,7 @@ public class Cart implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2808280328830326032L;
+	private static final long serialVersionUID = 2808280328830326032L;
 	@Id
 	private String cartId;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
@@ -57,23 +57,10 @@ public class Cart implements Serializable {
 	}
 	
 	public void addCartItem(CartItem item) {
-		String productId = item.getProduct().getProductId();
-		
-//		if(cartItems.a(productId)) {
-//			CartItem existingCartItem = cartItems.get(productId);
-//			existingCartItem.setQuantity(existingCartItem.getQuantity()+ item.getQuantity());
-//			cartItems.put(productId, existingCartItem);
-//		} else {
-//			cartItems.put(productId, item);
-//		}
+		cartItems.add(item);
 		updateGrandTotal();
 	}
 	
-	public void removeCartItem(CartItem item) {
-		String productId = item.getProduct().getProductId();
-		cartItems.remove(productId);
-		updateGrandTotal();
-	}
 	
 	public void updateGrandTotal() {
 		grandTotal= new BigDecimal(0);

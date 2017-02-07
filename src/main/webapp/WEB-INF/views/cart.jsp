@@ -21,10 +21,16 @@
  	</section>	
 
  	<section class="container" >
- 		<div>
+ 	
+		<div class="row">
+		<div class="col-md-5">
+	    <a href="#" onclick="make_visible('formInput');return false;"><img src="<c:url value="/resource/images/orderNow.png"></c:url>" alt="image"  style = "width:100%"/></a>
+       </div>
+ 		<div class="col-md-5">
 
 			<div>
-				 <a href="#" class="btn btn-success pull-right"> <span
+					<!-- checkout via web flow using URL parameter -->
+				 <a href="<spring:url value="/checkout?cartId=${cartId}"/>" class="btn btn-success pull-right"> <span
 					class="glyphicon-shopping-cart glyphicon"></span> Check out
 				</a>
 			</div>
@@ -42,12 +48,12 @@
 	
 		<c:forEach  var="item" items ="${cart.cartItems}" >
 				<tr>
-					<td>${item.value.product.productId}</td>
-					<td>${item.value.product.name}</td>
-					<td>${item.value.product.unitPrice}</td>
-					<td>${item.value.quantity}</td>
-					<td>${item.value.totalPrice}</td>
-					<td><a href="#" class="label label-danger" onclick="removeFromCart('${item.value.product.productId}');"> <span
+					<td>${item.product.productId}</td>
+					<td>${item.product.name}</td>
+					<td>${item.product.unitPrice}</td>
+					<td>${item.quantity}</td>
+					<td>${item.totalPrice}</td>
+					<td><a href="#" class="label label-danger" onclick="removeFromCart('${item.product.productId}');"> <span
 							class="glyphicon glyphicon-remove" /></span> Remove
 					</a></td>
 				</tr>
@@ -65,7 +71,34 @@
 			<a href="<spring:url value="/products" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> Continue shopping
 			</a>
-		</div>
+		</div></div>
 	</section>
+	
+	
+	
+	<div id="formInput" style="display:none" > 
+<p id="success" >  </p> 
+<p id="errors" >  </p>
+	<h3 align="center">Add to Cart</h3>
+
+	<!-- No action method handled by AJAX-->
+	<form id="cartForm" method="post">
+
+			<input type="hidden" id="pid" name="pid" value="P8">
+          
+ 
+         <p>
+            <label for="qty"> Quantity: </label>
+            <input value="1" id="qty"  name="qty" type="text"/>
+        </p>
+ 
+           <center>  <input type="button" value="Add To Cart" onclick="addToCartMore();return false;"></center>
+    
+    </form>
+  <h4 align="center"> 
+     <a href="#" onclick="make_hidden('formInput');resetForm('formInput');"> <b>EXIT</b> </a> 
+  </h4>
+
+</div>
 </body>
 </html>

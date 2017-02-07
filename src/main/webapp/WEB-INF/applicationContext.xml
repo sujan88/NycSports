@@ -54,8 +54,9 @@
    
    <!-- Scan for  transaction-based resources -->
    	<context:component-scan base-package="mum.edu.waa.nycsports.service" />
-    	<context:component-scan base-package="mum.edu.waa.nycsports.domain" />
-    	<context:component-scan base-package="mum.edu.waa.nycsports.repository" />
+   	<context:component-scan base-package="mum.edu.waa.nycsports.repository" />
+
+    	
      
    <tx:annotation-driven transaction-manager="transactionManager"/>
  

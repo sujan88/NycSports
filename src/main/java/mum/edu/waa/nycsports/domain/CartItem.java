@@ -3,7 +3,10 @@ package mum.edu.waa.nycsports.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.annotation.Generated;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -15,7 +18,7 @@ public class CartItem implements Serializable{
 	 */
 	private static final long serialVersionUID = 3682277381458553346L;
 	@Id
-	private int id;
+	private String id;
 	
 	@OneToOne
 	private Product product;
@@ -26,10 +29,11 @@ public class CartItem implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CartItem(Product product) {
+	public CartItem(Product product, int quantity) {
 		super();
+		this.id = product.getProductId();
 		this.product = product;
-		this.quantity = 1;
+		this.quantity = quantity;
 		this.totalPrice = product.getUnitPrice();
 	}
 	
@@ -38,6 +42,7 @@ public class CartItem implements Serializable{
 	}
 	
 	public void setProduct(Product product) {
+		this.id = product.getProductId();
 		this.product = product;
 		this.updateTotalPrice();
 	}
@@ -52,6 +57,7 @@ public class CartItem implements Serializable{
 	}
 	
 	public BigDecimal getTotalPrice() {
+		updateTotalPrice();
 		return totalPrice;
 	}
 
@@ -66,11 +72,11 @@ public class CartItem implements Serializable{
 		result = prime * result + ((product == null) ? 0 : product.hashCode());
 		return result;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	@Override

@@ -51,6 +51,8 @@ public class User implements Serializable{
 
 	private Integer userNumber;
 
+	private String phoneNumber;
+
 	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL) 
  	@JoinColumn(name="user_id") 
  	UserCredentials userCredentials;
@@ -59,12 +61,6 @@ public class User implements Serializable{
 	@OneToMany
      private List<Address> addresses = new ArrayList<Address>();
 	
-	@OneToMany
-	private List<Order> orders = new ArrayList<Order>();
-	
-	@OneToOne(fetch=FetchType.LAZY,  cascade = CascadeType.PERSIST) 
-	@JoinColumn(name="card_id") 
-	private Cart cart;
 
 	public User() {
 		
@@ -146,20 +142,12 @@ public class User implements Serializable{
  		return false;
  	}
 	
-	public List<Order> getOrders() {
-		return orders;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-
-//	public Cart getCart() {
-//		return cart;
-//	}
-//
-//	public void setCart(Cart cart) {
-//		this.cart = cart;
-//	}
 
 }
