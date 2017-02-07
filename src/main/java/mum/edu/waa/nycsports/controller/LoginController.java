@@ -10,12 +10,13 @@ public class LoginController {
 
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login() {
+		System.out.println("In the login method");
  		return "login";
 	}
  
 	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
 	public String loginerror(Model model) {
- 
+		System.out.println("Login Failed");
 		model.addAttribute("error", "true");
 		return "login";
  
@@ -23,6 +24,7 @@ public class LoginController {
  
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(Model model) {
+		System.out.println("Logout");
  		return "login";
  	}
 }
