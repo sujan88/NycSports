@@ -9,16 +9,15 @@
 <title>Products</title>
 </head>
 <body>
-	<section>
-		<div class="jumbotron">
+	
   			<div class="pull-right" style="padding-right:50px">
 				<a href="?language=en" >English</a>|<a href="?language=nl_NL" >Dutch</a>					
 			</div>
 			
-		</div>
-	</section>
+
+	
 	<section class="container">
-		<form:form  modelAttribute="newProduct" class="form-horizontal" enctype="multipart/form-data">
+		<form:form action="add" modelAttribute="newProduct" class="form-horizontal" method="post" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Add new product</legend>
 
@@ -85,11 +84,11 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="condition"><spring:message code="addProduct.form.condition.label"/></label>
+					<label class="control-label col-lg-2" for="status"><spring:message code="addProduct.form.condition.label"/></label>
 					<div class="col-lg-10">
-						<form:radiobutton path="condition" value="New" />New 
-						<form:radiobutton path="condition" value="Old" />Old 
-						<form:radiobutton path="condition" value="Refurbished" />Refurbished
+						<form:radiobutton path="status" value="New" />New 
+						<form:radiobutton path="status" value="Old" />Old 
+						<form:radiobutton path="status" value="Refurbished" />Refurbished
 					</div>
 				</div>
 				

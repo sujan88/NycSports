@@ -9,12 +9,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import mum.edu.waa.nycsports.domain.Category;
 import mum.edu.waa.nycsports.domain.Product;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product, String> {
+public interface CategoryRepository extends CrudRepository<Category, String> {
 
 	
-	@Query("select p.productId from Product p")
-	List<String> getProductsIds();
+
 }

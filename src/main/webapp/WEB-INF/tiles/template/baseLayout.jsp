@@ -30,10 +30,10 @@
 		</div>
 
 
-		<div class="jumbotron">
-			<h1>
+		<div class="jumbotron" style="background-color:white">
+		
 				<tiles:insertAttribute name="heading" />
-			</h1>
+			
 			<p>
 				<tiles:insertAttribute name="tagline" />
 			</p>

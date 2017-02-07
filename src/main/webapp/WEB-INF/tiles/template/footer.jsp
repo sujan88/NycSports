@@ -1,1 +1,1 @@
-<p>&copy; Company 2014</p>
+<p>&copy; NycSports 2017</p>

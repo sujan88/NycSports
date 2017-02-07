@@ -42,7 +42,7 @@ public class CartRestController {
  	@RequestMapping(value = "/add/{productId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void addItem(@PathVariable String productId, HttpServletRequest request) {
-		
+
 		String sessionId = request.getSession(true).getId();
 		Cart cart = cartService.read(sessionId);
 		if(cart== null) {
