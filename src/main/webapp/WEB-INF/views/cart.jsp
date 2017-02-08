@@ -30,7 +30,10 @@
 
 			<div>
 					<!-- checkout via web flow using URL parameter -->
-				 <a href="<spring:url value="/checkout?cartId=${cartId}"/>" class="btn btn-success pull-right"> <span
+				 <%-- <a href="<spring:url value="/checkout?cartId=${cartId}"/>" class="btn btn-success pull-right"> <span
+					class="glyphicon-shopping-cart glyphicon"></span> Check out
+				</a> --%>
+				<a href="<spring:url value="/checkoutCart?cartId=${cartId}"/>" class="btn btn-success pull-right"  style="background-color:#006699;"> <span
 					class="glyphicon-shopping-cart glyphicon"></span> Check out
 				</a>
 			</div>

@@ -10,11 +10,20 @@ $(document).ready(function() {
 				dataType: "json",
 				success: function(){
 					
-	 		 		alert("Product Successfully added to the Cart!");
-
+					$("#cd-cart").html("");
+					$("#cd-cart").append("<H4> Successfully Added To Cart. </H4>");
+					$("#cd-cart").append("<p> Product Id : "+$('#productId').val()+" <br/>");
+					$("#cd-cart").append("Quantity: : "+$('#quantity').val()+" </p>");
+					$("#cd-cart").css('color','white')
+					$("#cd-cart").css('background-color','gray')
+					$("#cd-cart").show();
 				},
 				error: function( errorObject){						
-					alert(errorObject.responseJSON.message);
+					$("#cd-cart").html("");
+					$("#cd-cart").append("<span> <span class='label label-warning'>Warning</span> : Please input a number. </span>");
+					$("#cd-cart").css('color','red')
+					$("#cd-cart").css('background-color','white')
+					$("#cd-cart").show();
 				}
 			});
 		}
@@ -29,12 +38,13 @@ $(document).ready(function() {
 				
  		 		$("#success").html("");
  		 		$("#success").append(" <center> Successfully added to the Cart! </center>")
- 		 		refreshCart();
  		 		location.reload(true);
 
 			},
-			error: function( errorObject){						
-				alert(errorObject.responseJSON.message);
+			error: function( errorObject){		
+				$("#errors").html("");
+				$("#errors").append("<span> <span class='label label-warning'>Warning</span> : Please input a number. </span>");
+				
 			}
 		});
 	}

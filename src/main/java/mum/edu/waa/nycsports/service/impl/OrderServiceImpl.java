@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import mum.edu.waa.nycsports.domain.Order;
+import mum.edu.waa.nycsports.domain.Orders;
 import mum.edu.waa.nycsports.domain.Product;
 import mum.edu.waa.nycsports.repository.OrderRepository;
 import mum.edu.waa.nycsports.repository.ProductRepository;
@@ -38,10 +38,10 @@ public class OrderServiceImpl implements OrderService{
 	
 
 	
-	public Long saveOrder(Order order) {
-		Order o= orderRepository.save(order);
+	public Long saveOrder(Orders order) {
+		Orders o= orderRepository.save(order);
 		cartService.delete(order.getCart().getCartId());
-		return o.getOrderId();
+		return o.getId();
 	}
 
 }

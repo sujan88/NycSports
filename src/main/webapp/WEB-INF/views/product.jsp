@@ -8,7 +8,7 @@
 <link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
  	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="<spring:url value="/resource/js/cart.js"/>"></script>
-	
+	<style type="text/css">@import url("<c:url value="/resource/css/cart.css"/>");</style>
 <title>Products</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
 				<h3>${product.name}</h3>
 				<p>${product.description}</p>
 				<p>
-					<strong>Item Code : </strong><span class="label label-warning">${product.productId}</span>
+					<strong>Item Code : </strong><span style="background-color:#006699;" class="label label-warning">${product.productId}</span>
 				</p>
 				<p>
 					<strong>manufacturer</strong> : ${product.manufacturer}
@@ -44,9 +44,9 @@
 				</p>
 				<h4><spring:eval expression =  "product.unitPrice" /> <spring:message code="currency.type"/></h4>
 				<p ng-controller="cartCtrl">
- 					<a href="#" class="btn btn-warning btn-large" onclick="addToCart();return false;"> 
-<span class="glyphicon-shopping-cart glyphicon"></span> Order Now </a>
-<a href="<spring:url value="/cart" />" class="btn btn-default">
+ 					<a href="#" class="btn btn-warning btn-large" style="background-color:#006699;" onclick="addToCart();return false;"> 
+<span class="glyphicon-shopping-cart glyphicon" ></span> Order Now </a>
+<a href="<spring:url value="/cart" />" class="btn btn-default" style="background-color:#00aaff;">
 	<span class="glyphicon-hand-right glyphicon"></span> View Cart
 </a>
 
@@ -58,8 +58,7 @@
 
 			</div>
 			
-			<div class="col-xs-4" id="cd-cart"></div>
-			
+			<div class="col-xs-4" id="cd-cart">
 			
 	
 		<c:forEach  var="item" items ="${cart.cartItems}" >
@@ -74,7 +73,7 @@
 		</c:forEach>
   
 				 ${cart.grandTotal}
-					
+			</div>		
 			
 		</div>
 <!--/div-->

@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Address implements Serializable{
@@ -19,10 +22,12 @@ public class Address implements Serializable{
 	private long id;
 
  	private String street;
+ 	@NotEmpty(message="{NotEmpty}")
 	private String city;
-	
+	@Size(min=2, max=2, message="{Size.state}")
  	private String state;
 
+	
   	private String zipCode;
 
 	private String country;

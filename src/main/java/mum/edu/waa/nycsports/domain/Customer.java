@@ -2,9 +2,13 @@ package mum.edu.waa.nycsports.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -15,9 +19,11 @@ public class Customer implements Serializable{
 	@Id
 	private String customerId;
 
-	
+	@NotEmpty(message="{NotEmpty}")
 	private String name;
-
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn
+	@Valid
 	private Address billingAddress;
 	private String phoneNumber;
 	

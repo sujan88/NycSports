@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -21,6 +23,7 @@ public class CartItem implements Serializable{
 	private String id;
 	
 	@OneToOne
+	@JoinColumn
 	private Product product;
 	private int quantity;
 	private BigDecimal totalPrice;
