@@ -42,5 +42,21 @@ public class ProductServiceImpl implements ProductService{
 	public void addProduct(Product product) {
 		   productRepository.save(product);
 	}
+	
+	//find the newest products
+	public List<Product> findProductsByDate(){
+		return productRepository.findProductsByDate();
+	}
+	
+	//find the products by price
+	public List<Product> findProductsByPrice(){
+		return productRepository.findProductsByPrice();
+	}
+
+	@Override
+	public void deleteProduct(String id) {
+		productRepository.delete(id);
+		
+	}
 
 }

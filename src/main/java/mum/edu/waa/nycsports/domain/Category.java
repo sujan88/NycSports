@@ -30,7 +30,7 @@ public class Category implements Serializable{
 	String description;
 
 	// If using a List INSTEAD of a SET - less efficient
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	Set<Product> items = new HashSet<Product>();
 
 	public Category() {

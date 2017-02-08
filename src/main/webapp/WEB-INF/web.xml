@@ -10,21 +10,44 @@
 			</param-value>
     </init-param>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>DispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
         		/WEB-INF/applicationContext.xml
+        		/WEB-INF/security-context.xml
          </param-value>
   </context-param>
+  
   <listener>
-    <listener-class>
-org.springframework.web.context.ContextLoaderListener 
-</listener-class>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
   </listener>
+  
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener 
+		</listener-class>
+	</listener>
+	
+	<!-- springSecurityFilterChain == an internal infrastructure  
+			bean created based on namespace enabling of security
+			<http auto-config='true'> -->
+	<filter>
+	<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>
+			org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
  
   <error-page>
     <error-code>404</error-code>

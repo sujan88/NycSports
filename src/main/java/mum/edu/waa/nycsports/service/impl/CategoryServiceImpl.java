@@ -26,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public List<Category> getAllCategory() {
 		// TODO Auto-generated method stub
-		return null;
+		return (List<Category>)categoryRepository.findAll();
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 
 	@Override
-	public void addCategory(Category product) {
-		// TODO Auto-generated method stub
+	public void addCategory(Category category) {
+		categoryRepository.save(category);
 		
 	}
 
