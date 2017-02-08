@@ -1,7 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <style>
@@ -49,102 +52,147 @@
 	box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset;
 	border-radius: 2px;
 }
+
+.a-divider-inner {
+	height: 44px;
+	margin-bottom: -18px;
+	z-index: 0;
+	zoom: 1;
+}
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Register</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Nyc Registration</title>
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-		
-	</script>
 	<script>
-		$(document).ready(
-				function() {
-					var contextRoot = getContextPath();
-					registerNewCustomer = function() {
-						var sendToSend = JSON.stringify(serializeObject($('#newCustomer')));
-						
-						if ($('#inputPassword').val() == $('#inputVerifypassword').val()) {
-							$.ajax({
-								url: contextRoot + '/register',
-								type: 'POST',
-								dataType: 'json', 
-								data: sendToSend,
-								contentType : 'application/json',
-								success: function(response) {
-								},
-								error: function(xhr, exception) {
-									console.log(xhr);
-									
-									make_hidden('errorsUsername');
-									make_hidden('errorsPassord');
-									make_hidden('errorsVerifypassword');
-									
-									if(xhr.status == "200") {
-										window.location.replace(contextRoot + '/welcome');
-									} else if(xhr.status == "409") {
-										$('#errorsUsername').html("");
-										$('#errorsPassord').html("");
-										$('#errorsVerifypassword').html("");
-										$('#errorsUsername').append("Account already existed. Please enter other username");
-										make_visible('errorsUsername');
-									} else if(xhr.status == "400") {
-										var json = JSON.parse(xhr.responseText);
-										$('#errorsUsername').html("");
-										$('#errorsPassord').html("");
-										$('#errorsVerifypassword').html("");
-										
-										if(json.hasOwnProperty('username')) {
-											$('#errorsUsername').append(json['username']);
-											make_visible('errorsUsername');
-										}
-										
-										if(json.hasOwnProperty('password')) {
-											$('#errorsPassord').append(json['password']);
-											make_visible('errorsPassord');
-										}
-									}
+		$(document)
+				.ready(
+						function() {
+							var contextRoot = getContextPath();
+							registerNewCustomer = function() {
+								var sendToSend = JSON
+										.stringify(serializeObject($('#newCustomer')));
+
+								if ($('#inputPassword').val() == $(
+										'#inputVerifypassword').val()) {
+									$
+											.ajax({
+												url : contextRoot + '/register',
+												type : 'POST',
+												dataType : 'json',
+												data : sendToSend,
+												contentType : 'application/json',
+												success : function(response) {
+												},
+												error : function(xhr, exception) {
+													console.log(xhr);
+
+													make_hidden('errorsUsername');
+													make_hidden('errorsPassord');
+													make_hidden('errorsVerifypassword');
+
+													if (xhr.status == "200") {
+														window.location
+																.replace(contextRoot
+																		+ '/addUserDetails');
+													} else if (xhr.status == "409") {
+														$('#errorsUsername')
+																.html("");
+														$('#errorsPassord')
+																.html("");
+														$(
+																'#errorsVerifypassword')
+																.html("");
+														$('#errorsUsername')
+																.append(
+																		"Account already existed. Please enter other username");
+														make_visible('errorsUsername');
+													} else if (xhr.status == "400") {
+														var json = JSON
+																.parse(xhr.responseText);
+														$('#errorsUsername')
+																.html("");
+														$('#errorsPassord')
+																.html("");
+														$(
+																'#errorsVerifypassword')
+																.html("");
+
+														if (json
+																.hasOwnProperty('username')) {
+															$('#errorsUsername')
+																	.append(
+																			json['username']);
+															make_visible('errorsUsername');
+														}
+
+														if (json
+																.hasOwnProperty('password')) {
+															$('#errorsPassord')
+																	.append(
+																			json['password']);
+															make_visible('errorsPassord');
+														}
+													}
+												}
+											});
+								} else {
+									$('#errorsUsername').html("");
+									$('#errorsPassord').html("");
+									$('#errorsVerifypassword').html("");
+									$('#errorsVerifypassword')
+											.append(
+													"Mishmatch password and verify password");
+									make_visible('errorsVerifypassword');
 								}
-							});
-						} else {
-							$('#errorsUsername').html("");
-							$('#errorsPassord').html("");
-							$('#errorsVerifypassword').html("");
-							$('#errorsVerifypassword').append("Mishmatch password and verify password");
-							make_visible('errorsVerifypassword');
-						}
-					};
+							};
 
-					make_hidden = function(id) {
-						var element = document.getElementById(id);
-						element.style.display = 'none';
-					}
+							make_hidden = function(id) {
+								var element = document.getElementById(id);
+								element.style.display = 'none';
+							};
 
-					make_visible = function(id) {
-						var element = document.getElementById(id);
-						element.style.display = 'block';
-					}
-					
-					function serializeObject(form) {
-						var jsonObject = {};
-						var array = form.serializeArray();
-						$.each(array, function() {
-							jsonObject[this.name] = this.value;
+							make_visible = function(id) {
+								var element = document.getElementById(id);
+								element.style.display = 'block';
+							};
+
+							function serializeObject(form) {
+								var jsonObject = {};
+								var array = form.serializeArray();
+								$.each(array, function() {
+									jsonObject[this.name] = this.value;
+								});
+								return jsonObject;
+
+							}
+							;
+
+							function getContextPath() {
+								return window.location.pathname.substring(0,
+										window.location.pathname
+												.indexOf("/", 2));
+							}
+							;
+
+							function signin() {
+								window.location.replace(contextRoot + '/login');
+							}
 						});
-						return jsonObject;
-
-					};
-
-					function getContextPath() {
-						return window.location.pathname.substring(0,
-								window.location.pathname.indexOf("/", 2));
-					};
-					
-				});
 	</script>
+
+	<div class="jumbotron text-center">
+		<h1>Wellcome to Newyork store</h1>
+		<p>Please register an account to enjoy</p>
+	</div>
 
 	<div class="container">
 		<div class="row">
@@ -159,19 +207,20 @@
 								<div class="form-group">
 									<input id="inputUsername" class="form-input-large"
 										placeholder="Your name" name='username' type="text">
-									<div id="errorsUsername" style="display: none; color : red;"></div>
+									<div id="errorsUsername" style="display: none; color: red;"></div>
 								</div>
 								<div class="form-group">
 									<input id="inputPassword" class=" form-input-large"
 										placeholder="Password" name='password' type="password"
 										value="">
-									<div id="errorsPassord" style="display: none; color : red;"></div>
+									<div id="errorsPassord" style="display: none; color: red;"></div>
 								</div>
 								<div class="form-group">
 									<input id="inputVerifypassword" class=" form-input-large"
 										placeholder="Password again" name='verifyPassword'
 										type="password" value="">
-									<div id="errorsVerifypassword" style="display: none; color : red;"></div>
+									<div id="errorsVerifypassword"
+										style="display: none; color: red;"></div>
 								</div>
 								<div class="btn btn-lg btn-success btn-mini"
 									onclick="registerNewCustomer();">Create your Nyc account</div>
@@ -179,6 +228,15 @@
 							</fieldset>
 
 						</form>
+
+						<div class="a-divider a-divider-section">
+							<div class="a-divider-inner"></div>
+						</div>
+
+						<div class="a-row">
+							Already have an account? <a class="a-link-emphasis"
+								href="/NycSports/login"> Sign in </a>
+						</div>
 					</div>
 				</div>
 			</div>

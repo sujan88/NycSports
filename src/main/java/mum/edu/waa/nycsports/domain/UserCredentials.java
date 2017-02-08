@@ -13,8 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
+
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -30,12 +29,12 @@ public class UserCredentials implements Serializable {
 
 	@Id
 	@Column(nullable = false, unique = true)
-	@NotEmpty(message = "{NotEmpty.username}")
+	@NotEmpty
 	String username;
 
 	@Column(nullable = false)
 	@Size(min=8, max=32, message="{Size.password}")
-	@NotEmpty(message = "{NotEmpty.password}")
+	@NotEmpty
 	String password;
 
 	String verifyPassword;

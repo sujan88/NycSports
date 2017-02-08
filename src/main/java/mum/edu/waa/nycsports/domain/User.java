@@ -2,9 +2,8 @@ package mum.edu.waa.nycsports.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,21 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
-
-
 
 @Entity(name = "USERS")
-public class User implements Serializable{
+public class User implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1984758705380690379L;
 
 	@Id
@@ -38,38 +30,39 @@ public class User implements Serializable{
 	private Long id;
 
 	@Column(length = 16)
+	@NotEmpty
 	private String firstName;
 
 	@Column(length = 16)
+	@NotEmpty
 	private String lastName;
 
-	private Integer age;
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+	        +"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+	        +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+	             message="{Invalid.email}")
+	@NotEmpty
+	private String email;
+
+	@Past(message = "{Invalid.dob.past}")
+	private Date dob;
 
 	@Column(length = 32)
-	@NotEmpty
 	private String title;
 
 	private Integer userNumber;
 
-	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL) 
- 	@JoinColumn(name="user_id") 
- 	UserCredentials userCredentials;
- 	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	UserCredentials userCredentials;
 
 	@OneToMany
-     private List<Address> addresses = new ArrayList<Address>();
-	
-	@OneToMany
-	private List<Order> orders = new ArrayList<Order>();
-	
-	@OneToOne(fetch=FetchType.LAZY,  cascade = CascadeType.PERSIST) 
-	@JoinColumn(name="card_id") 
-	private Cart cart;
+	private List<Address> addresses = new ArrayList<Address>();
 
 	public User() {
-		
+
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -131,35 +124,26 @@ public class User implements Serializable{
 		this.userNumber = userNumber;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 
-	public Integer getAge() {
-		return age;
+	public Date getDob() {
+		return dob;
 	}
- 	
- 	public boolean isAdmin()
- 	{
- 		if (this.getUserCredentials().isAdmin())
- 			return true;
- 		return false;
- 	}
 	
-	public List<Order> getOrders() {
-		return orders;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-//	public Cart getCart() {
-//		return cart;
-//	}
-//
-//	public void setCart(Cart cart) {
-//		this.cart = cart;
-//	}
-
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", dob="
+				+ dob + ", title=" + title + ", userNumber=" + userNumber + ", userCredentials=" + userCredentials
+				+ ", addresses=" + addresses.get(0).toString() + "]";
+	}
 }
