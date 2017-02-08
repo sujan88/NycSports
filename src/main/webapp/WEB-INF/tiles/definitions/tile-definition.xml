@@ -41,8 +41,7 @@
 	
 	<definition name="cart" extends="baseLayout">
 		<put-attribute name="title" value="Shopping Cart" />
-		<put-attribute name="heading" value="Cart" />
-		<put-attribute name="tagline" value="your shopping cart" />
+		<put-attribute name="tagline" value="/WEB-INF/views/cartheader.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/cart.jsp" />
 	</definition>
 	 	

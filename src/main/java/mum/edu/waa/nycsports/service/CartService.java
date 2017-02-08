@@ -1,6 +1,7 @@
 package mum.edu.waa.nycsports.service;
 
 import mum.edu.waa.nycsports.domain.Cart;
+import mum.edu.waa.nycsports.domain.CartItem;
 
 public interface CartService {
 	
@@ -8,8 +9,14 @@ public interface CartService {
 	
 	Cart read(String cartId);
 	
-	void update(String cartId, Cart cart);
+	Cart update(String productId, int quantity,  Cart cart);
+	
+	Cart removeCartItem(String cartItemId, Cart cart);
 	
 	void delete(String cartId);
+
+	Cart validate(String cartId);
+	
+
 
 }

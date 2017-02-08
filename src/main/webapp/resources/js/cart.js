@@ -2,21 +2,54 @@ $(document).ready(function() {
 	
 	var cartId;
 	
-	addToCart = function(productId){
+	addToCart = function(){
+		
 			$.ajax({
-		 		url: '/NycSports/rest/cart/add/' + productId,
+		 		url: '/NycSports/rest/cart/add/' +  $('#productId').val()+'/'+$('#quantity').val(),
 		 		type: 'PUT',
 				dataType: "json",
-				success: function(response){
-	 		 		alert("Product Successfully added to the Cart!");
-
+				success: function(){
+					
+					$("#cd-cart").html("");
+					$("#cd-cart").append("<H4> Successfully Added To Cart. </H4>");
+					$("#cd-cart").append("<p> Product Id : "+$('#productId').val()+" <br/>");
+					$("#cd-cart").append("Quantity: : "+$('#quantity').val()+" </p>");
+					$("#cd-cart").css('color','white')
+					$("#cd-cart").css('background-color','gray')
+					$("#cd-cart").show();
 				},
-				error: function(){						
-					alert('Error while request..');
+				error: function( errorObject){						
+					$("#cd-cart").html("");
+					$("#cd-cart").append("<span> <span class='label label-warning'>Warning</span> : Please input a number. </span>");
+					$("#cd-cart").css('color','red')
+					$("#cd-cart").css('background-color','white')
+					$("#cd-cart").show();
 				}
 			});
 		}
 
+	addToCartMore = function(){
+
+		$.ajax({
+	 		url: '/NycSports/rest/cart/add/' +  $('#pid').val()+'/'+$('#qty').val(),
+	 		type: 'PUT',
+			dataType: "json",
+			success: function(data){
+				
+ 		 		$("#success").html("");
+ 		 		$("#success").append(" <center> Successfully added to the Cart! </center>")
+ 		 		location.reload(true);
+
+			},
+			error: function( errorObject){		
+				$("#errors").html("");
+				$("#errors").append("<span> <span class='label label-warning'>Warning</span> : Please input a number. </span>");
+				
+			}
+		});
+	}
+	
+	
 	   removeFromCart = function(productId) {
 			$.ajax({
 				url: '/NycSports/rest/cart/remove/'+ productId,
@@ -31,8 +64,42 @@ $(document).ready(function() {
 		   });
 	   }
 
-	   
-	   
+	   viewMiniCart = function(){
+			
+			$.ajax({
+		 		url: '/NycSports/rest/cart/mini',
+		 		type: 'GET',
+				dataType: "json",
+				contentType: "application/json",
+				success: function(cart){
+					
+	 		 		alert("succuss");
+
+				},
+				error: function( ){						
+					alert('Error while request..');
+				}
+			});
+		}
+
+	   viewAddToCart = function(){
+			
+			$.ajax({
+		 		url: '/NycSports/rest/cart/mini',
+		 		type: 'GET',
+				dataType: "json",
+			
+				success: function(cart){
+					
+	 		 		alert("succuss");
+
+				},
+				error: function( ){						
+					alert('Error while request..');
+				}
+			});
+		}
+
 	 // Click on Product [row]  in cart
        $("#cart_table").find("tr").click(function() {  
 	       	var productId=  $(this).find("td:first").html();
@@ -77,9 +144,9 @@ $(document).ready(function() {
 	    }	   
 //------------------TO BE Implemented-------------------------------------	   
 	   
-/*		 getCartId = function( ) {
+		 getCartId = function( ) {
 				$.ajax({
-					url: '/webstore08/rest/cart/getId/',
+					url: '/NycSports/rest/cart/getId/',
 					type: 'GET',
 					success : function(id) {
 					 		 		 cartId = id;
@@ -92,15 +159,37 @@ $(document).ready(function() {
 		 refreshCart = function() {
 		 		getCartId();
 				$.ajax({
-					url: '/webstore8/rest/cart/'+ cartId,
+					url: '/NycSports/rest/cart/'+ cartId,
 					type: 'GET',
 					dataType: "json",
 					success : function(cartData) {
+						$("#formInput").append("DDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
   					 }
 			});
 		 }
 
-*/
+
 });
+
+
+
+resetForm = function(id) {
+	$("#success").html("");
+    var element = document.getElementById(id);
+    $(element)[0].reset();
+
+    }	  
+	
+
+
+make_hidden = function(id) {
+    var e = document.getElementById(id);
+        e.style.display = 'none';
+        }	   
+
+make_visible = function(id) {
+    var e = document.getElementById(id);
+    e.style.display = 'block';
+ }	   
 
  

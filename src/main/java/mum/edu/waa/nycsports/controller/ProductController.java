@@ -28,9 +28,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContext;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import mum.edu.waa.nycsports.domain.Cart;
 import mum.edu.waa.nycsports.domain.Product;
 import mum.edu.waa.nycsports.exception.NoProductsFoundUnderCategoryException;
 import mum.edu.waa.nycsports.exception.ProductNotFoundException;
+import mum.edu.waa.nycsports.service.CartService;
 import mum.edu.waa.nycsports.service.ProductService;
 
 
@@ -42,6 +44,8 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+		@Autowired
+		private CartService cartService;
 
 	@RequestMapping
 	public String list(Model model) {
@@ -128,7 +132,23 @@ public class ProductController {
 	}
 	return "";
 }
- 
+
+
+	@RequestMapping(value = "/cartmini", method = RequestMethod.GET)
+	public String getCart( Model model,HttpServletRequest request) {
+			System.out.println(request.getSession(true).getId()+" PPPPP ");
+		model.addAttribute("cartId",request.getSession(true).getId());
+		Cart cart = cartService.read(request.getSession(true).getId());
+		if (cart == null) {
+			cart = new Cart(request.getSession(true).getId());
+			cartService.create(cart );
+		}
+		model.addAttribute("cart",cart);
+		
+		return "product";
+	}
+	
+	
 	// Either this Method HERE ...OR remove and put it in ControllerAdvice class
 /*
 	@ExceptionHandler(ProductNotFoundException.class)

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import mum.edu.waa.nycsports.domain.Cart;
 import mum.edu.waa.nycsports.domain.CartItem;
 import mum.edu.waa.nycsports.domain.Product;
+import mum.edu.waa.nycsports.domain.dto.DomainErrors;
 import mum.edu.waa.nycsports.exception.ProductNotFoundException;
 import mum.edu.waa.nycsports.service.CartService;
 import mum.edu.waa.nycsports.service.ProductService;
@@ -39,26 +42,22 @@ public class CartRestController {
 		return  cartService.create(cart);
 	}
 
- 	@RequestMapping(value = "/add/{productId}", method = RequestMethod.PUT)
-	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void addItem(@PathVariable String productId, HttpServletRequest request) {
-
+ 	@RequestMapping(value = "/add/{productId}/{quantity}", method = RequestMethod.PUT ,headers = "Accept=application/json")
+ 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+ 	public void addItem(@PathVariable String productId,@PathVariable String quantity, HttpServletRequest request) throws Exception{
+ 
+ 	    int qty = Integer.parseInt(quantity);
 		String sessionId = request.getSession(true).getId();
+
 		Cart cart = cartService.read(sessionId);
-		if(cart== null) {
+		if(cart== null)
+		{
 			cart = cartService.create(new Cart(sessionId));
 		}
+
+		 cartService.update(productId, qty, cart);
 		
-		Product product = productService.getProductById(productId);
-		if(product == null) {
-			throw new IllegalArgumentException(new ProductNotFoundException(productId,null));
-		}
 		
-		cart.addCartItem(new CartItem(product));
-		System.out.printf("Product ITEM: %s\n",product.getName());
-		System.out.printf("CART ITEM: %s\n",cart.getCartItems().size());
-	
-		cartService.update(sessionId, cart);
 	}
 	
 	@RequestMapping(value = "/remove/{productId}", method = RequestMethod.PUT)
@@ -67,29 +66,18 @@ public class CartRestController {
 		
 		String sessionId = request.getSession(true).getId();
 		Cart cart = cartService.read(sessionId);
-		if(cart== null) {
-			cart = cartService.create(new Cart(sessionId));
-		}
-		
-		Product product = productService.getProductById(productId);
-		if(product == null) {
-			throw new IllegalArgumentException(new ProductNotFoundException(productId, null));
-		}
-
-		cart.removeCartItem(new CartItem(product));
 				
-		cartService.update(sessionId, cart);
+		cartService.removeCartItem(productId, cart);
 	}
 	
 		@RequestMapping(value="/showProduct")
 		public @ResponseBody  Product  getRestProduct ( @RequestParam("id") String productId  ) {
-//			String productId = request.getParameter("id");
 
 			Product product = productService.getProductById(productId);
 	 		return product ;
 		}
 
-		// TODO:
+		
 		@RequestMapping(value = "/getId", method = RequestMethod.GET)
 		public @ResponseBody String getCartId(HttpSession session) {
 			return session.getId();
@@ -104,13 +92,25 @@ public class CartRestController {
 		}
 
 
+		@RequestMapping("/mini")
+		public String getMini(HttpServletRequest request) {
+			return "redirect:/rest/cart/minicart/"+request.getSession(true).getId();
+		}
+		@RequestMapping(value = "/minicart/{cartId}", method = RequestMethod.GET )
+		public @ResponseBody Cart getMiniCart(@PathVariable(value = "cartId") String cartId) {
 
+			
+			Cart cart = cartService.read(cartId);
+			if (cart == null) {
+				cart = new Cart(cartId);
+				cartService.create(cart );
+			}
+			
+			System.out.println(cart.getGrandTotal());
+			return cart;
+		}
+		
 
-	@ExceptionHandler(IllegalArgumentException.class)
-	@ResponseStatus(value = HttpStatus.BAD_REQUEST,  reason="Illegal request, please verify your payload")
-	public void handleClientErrors(Exception ex) { }
-
-	@ExceptionHandler(Exception.class)
-	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason="Internal server error")
-	public void handleServerErrors(Exception ex) {	}
+	
+	
 }
