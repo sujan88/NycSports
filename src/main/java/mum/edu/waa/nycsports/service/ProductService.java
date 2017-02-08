@@ -21,4 +21,10 @@ public interface ProductService {
 	void addProduct(Product product);
 
 	void deleteProduct(String id);
+	
+	//newest products
+	List<Product> findProductsByDate();
+	
+	//lowest price products
+	List<Product> findProductsByPrice();
 }
