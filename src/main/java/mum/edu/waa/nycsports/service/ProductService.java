@@ -19,6 +19,8 @@ public interface ProductService {
 //	Set<Product> getProductsByFilter(Map<String, List<String>> filterParams);
 	
 	void addProduct(Product product);
+
+	void deleteProduct(String id);
 	
 	//newest products
 	List<Product> findProductsByDate();

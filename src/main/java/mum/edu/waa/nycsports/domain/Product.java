@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
@@ -29,7 +31,7 @@ public class Product implements Serializable {
 
     @Id
 	@Pattern(regexp="P[1-9]+", message="{Pattern.Product.productId.validation}")
-	@ProductId
+    //@ProductId
 	private String productId;
 	
 	@Size(min=4, max=50, message="{Size.Product.name.validation}")
@@ -42,7 +44,7 @@ public class Product implements Serializable {
 	private BigDecimal unitPrice;
 	private String description;
 	private String manufacturer;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private Category category;
 	private long unitsInStock;
 	private long unitsInOrder;
