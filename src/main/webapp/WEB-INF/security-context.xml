@@ -12,32 +12,40 @@
 
 	<security:http use-expressions="true">
 		<security:intercept-url pattern="/" access="permitAll" />
-		<security:intercept-url pattern="/register" access="permitAll" />
-		<security:intercept-url pattern="/login" access="permitAll" />
-		<security:intercept-url pattern="/loginfailed" access="permitAll" />
-		<security:intercept-url pattern="/logout" access="permitAll" />
-		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
-		
-		<security:form-login 
-			login-page="/login"
-			login-processing-url="/postLogin" 
-			username-parameter="username"
-			password-parameter="password" 
-			default-target-url="/welcome"
-			always-use-default-target="true" 
-			authentication-failure-url="/loginfailed" />
+		<security:intercept-url pattern="/register"
+			access="permitAll" />
+		<security:intercept-url pattern="/login"
+			access="permitAll" />
+		<security:intercept-url pattern="/loginfailed"
+			access="permitAll" />
+		<security:intercept-url pattern="/logout"
+			access="permitAll" />
+		<security:intercept-url pattern="/**"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/admin/**"
+			access="hasRole('ROLE_ADMIN')" />
+
+		<security:form-login login-page="/login"
+			login-processing-url="/postLogin" username-parameter="username"
+			password-parameter="password" authentication-success-handler-ref="myAuthenticationSuccessHandler"
+			always-use-default-target="true" authentication-failure-url="/loginfailed" />
 
 		<security:logout logout-success-url="/logout"
 			delete-cookies="JSESSIONID" logout-url="/doLogout" />
 
 		<security:remember-me data-source-ref="dataSource"
 			token-validity-seconds="86400" remember-me-parameter="keepMe" />
-		
-		<!--disable CSRF protection, the corresponding XML configuration can be seen below-->
-		<security:csrf disabled="true"/>
+
+		<!--disable CSRF protection, the corresponding XML configuration can be 
+			seen below -->
+		<security:csrf disabled="true" />
 	</security:http>
 
-	<security:authentication-manager>
+	<bean id="myAuthenticationSuccessHandler"
+		class="mum.edu.waa.nycsports.controller.UrlAuthenticationSuccessHandler" />
+
+	<!--Provide an explicit bean name for AuthenticationManager with alias="authenticationManager" -->
+	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider>
 			<!-- <security:password-encoder hash="bcrypt" /> -->
 			<security:jdbc-user-service

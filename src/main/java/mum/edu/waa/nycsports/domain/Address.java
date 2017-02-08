@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Address implements Serializable{
@@ -25,6 +24,7 @@ public class Address implements Serializable{
 
   	private String zipCode;
 
+  	private String country;
   	
 	public String getStreet() {
 		return street;
@@ -49,5 +49,16 @@ public class Address implements Serializable{
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", street=" + street + ", city=" + city + ", state=" + state + ", zipCode="
+				+ zipCode + ", country=" + country + "]";
 	}
 }

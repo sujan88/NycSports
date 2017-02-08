@@ -49,12 +49,22 @@
 	border-radius: 2px;
 }
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Login</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Products</title>
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<div class="jumbotron text-center">
+		<h1>Wellcome to Newyork store</h1>
+		<p>Please login your account</p>
+	</div>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -97,9 +107,7 @@
 
 						<span id="auth-create-account-link"
 							class="a-button a-button-span12"> <span
-							class="a-button-inner"> 
-							
-							<a id="createAccountSubmit"
+							class="a-button-inner"> <a id="createAccountSubmit"
 								tabindex="6" href="/NycSports/register" class="a-button-text"
 								role="button"> Create your Nyc account </a>
 						</span></span>
