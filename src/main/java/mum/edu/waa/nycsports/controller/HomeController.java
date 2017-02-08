@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -19,15 +20,22 @@ public class HomeController {
 
 	@Autowired
 	private ProductService productService;
+	@Autowired  
+	private HttpSession session; 
 	
 
 	@RequestMapping({"/","/welcome"})
 	public String welcome(Model model, Locale locale) {
 
-		model.addAttribute("products", productService.getAllProducts());
-
+		//model.addAttribute("products", productService.getAllProducts());
 		
-  		System.out.printf("WELCOME AGAIN %s in %s\n","NYC Sports!",locale.getDisplayLanguage());
+		model.addAttribute("nProducts", productService.findProductsByDate());
+		
+		model.addAttribute("pProducts", productService.findProductsByPrice());
+		
+		
+  		
+		System.out.printf("WELCOME AGAIN %s in %s\n","NYC Sports!",locale.getDisplayLanguage());
 
 		return "welcome";
 	}

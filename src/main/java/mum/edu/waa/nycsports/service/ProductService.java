@@ -19,4 +19,10 @@ public interface ProductService {
 //	Set<Product> getProductsByFilter(Map<String, List<String>> filterParams);
 	
 	void addProduct(Product product);
+	
+	//newest products
+	List<Product> findProductsByDate();
+	
+	//lowest price products
+	List<Product> findProductsByPrice();
 }
