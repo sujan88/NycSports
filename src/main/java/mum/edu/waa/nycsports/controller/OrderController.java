@@ -1,5 +1,6 @@
 package mum.edu.waa.nycsports.controller;
 
+import java.security.Principal;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,14 +18,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import mum.edu.waa.nycsports.domain.Cart;
 import mum.edu.waa.nycsports.domain.CreditCard;
 import mum.edu.waa.nycsports.domain.Customer;
 import mum.edu.waa.nycsports.domain.Orders;
 import mum.edu.waa.nycsports.domain.ShippingDetail;
+import mum.edu.waa.nycsports.domain.User;
 import mum.edu.waa.nycsports.service.CartService;
 import mum.edu.waa.nycsports.service.OrderService;
+import mum.edu.waa.nycsports.service.UserService;
 
 
 
@@ -38,18 +42,21 @@ public class OrderController {
 	@Autowired
 	CartService cartService;
 	
+	@Autowired
+	UserService  userService;
+	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping("/checkoutCart")
-	public String checkOut(@RequestParam String cartId, Model model, Locale locale){
+	public String checkOut(@RequestParam String cartId, Model model, Locale locale, Principal principal){
+
 		Cart cart= validateCart(cartId);
 		if(cart==null || cart.getCartItems().size()==0){
 			return "invalidPromoCode";
 		}
+
         Orders order = new Orders();
         order.setCart(cart);
-		model.addAttribute("customer", new Customer());
 		model.addAttribute("orderSession", order);
-		
 		return "/checkout/collectCustomerInfo";
 	}
 	
@@ -98,15 +105,20 @@ public class OrderController {
 	
 	
 	@RequestMapping(value="/confirm", method = RequestMethod.POST)
-	public String saveOrder( Model model) {
+	public String saveOrder( Model model,RedirectAttributes redirectAttributes) {
 		
 		Orders orderSession =(Orders)model.asMap().get("orderSession");
 		
 		Long orderId= orderService.saveOrder(orderSession);
-		System.out.println(orderId);
-		model.addAttribute("orderId",orderId);
-		model.addAttribute("shippingDate",orderSession.getShippingDetail().getShippingDate());
+
+		redirectAttributes.addFlashAttribute("orderId",orderId);
+		redirectAttributes.addFlashAttribute("shippingDate",orderSession.getShippingDetail().getShippingDate());
 		model.asMap().remove("orderSession");
+		return "redirect:/thankyou";
+	}
+	
+	@RequestMapping("/thankyou")
+	public String Thankyou( Model model) {
 		return "/checkout/thankCustomer";
 	}
 	

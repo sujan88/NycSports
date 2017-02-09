@@ -73,4 +73,11 @@
 			</list>
 		</property>
 	</bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/checkoutCart" />
+			<bean class="mum.edu.waa.nycsports.interceptor.UserAuthenticationInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

@@ -26,33 +26,33 @@
 		  		     <form:errors path="*" cssStyle="color : red;" /> 
 		        </p>
   
-			<form:input id="customerId" path="customerId" type="hidden" value="1"  />
+			<form:input id="customerId" path="customerId" type="hidden"  value="${customer.customerId}"  />
 	
 				<div >
 					<label class="control-label col-lg-2" for="name"><spring:message code="name"/></label>
 					<div >
-						<form:input id="name" path="name" type="text" />					
+						<form:input id="name" path="name"  value="${customer.name}" type="text" />					
 					</div>
 				</div>
  
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="streetName"><spring:message code="street"/></label>
 					<div class="col-lg-10">
-						<form:input id="streetName" path="billingAddress.street" type="text"
+						<form:input id="streetName" path="billingAddress.street" value="${customer.billingAddress.street}" type="text"
 							 />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="city"><spring:message code="city"/></label>
 					<div class="col-lg-10">
-						<form:input id="city" path="billingAddress.city" type="text"
+						<form:input id="city" path="billingAddress.city" value="${customer.billingAddress.city}" type="text"
 							/>
 					</div>
 				</div>
  				<div class="form-group">
 					<label class="control-label col-lg-2" for="state"><spring:message code="state"/></label>
 					<div class="col-lg-10">
-						<form:input id="state" path="billingAddress.state" type="text"
+						<form:input id="state" path="billingAddress.state"  value="${customer.billingAddress.state}" type="text"
 							/>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="country"><spring:message code="country"/></label>
 					<div class="col-lg-10">
-						<form:input id="country" path="billingAddress.country" type="text"
+						<form:input id="country" path="billingAddress.country" value="${customer.billingAddress.country}"  type="text"
 							 />
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="zipCode"><spring:message code="zipcode"/></label>
 					<div class="col-lg-10">
-						<form:input id="zipCode" path="billingAddress.zipCode" type="text"
+						<form:input id="zipCode" path="billingAddress.zipCode" value="${customer.billingAddress.zipCode}" type="text"
 							 />
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="phoneNumber"><spring:message code="phone"/></label>
 					<div class="col-lg-10">
-						<form:input id="phoneNumber" path="phoneNumber" type="text"
+						<form:input id="phoneNumber" path="phoneNumber" value="${customer.phoneNumber}" type="text"
 						/>
 					</div>
 				</div>

@@ -23,16 +23,15 @@ public class Orders implements Serializable{
 
 	@Transient
 	private Cart cart;
-	@OneToOne(cascade=CascadeType.ALL)
 	
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn
 	private Customer customer;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn
 	private ShippingDetail shippingDetail;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn
+	@Transient
 	private CreditCard creditCard ;
 	
 
