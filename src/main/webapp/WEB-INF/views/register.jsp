@@ -190,7 +190,7 @@
 	</script>
 
 	<div class="jumbotron text-center">
-		<h1>Wellcome to Newyork store</h1>
+		<h1>Wellcome to Newyork Sport Store</h1>
 		<p>Please register an account to enjoy</p>
 	</div>
 

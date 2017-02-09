@@ -40,7 +40,7 @@
 			seen below -->
 		<security:csrf disabled="true" />
 	</security:http>
-
+ 
 	<bean id="myAuthenticationSuccessHandler"
 		class="mum.edu.waa.nycsports.controller.UrlAuthenticationSuccessHandler" />
 
