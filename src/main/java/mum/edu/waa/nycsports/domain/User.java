@@ -15,10 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity(name = "USERS")
 public class User implements Serializable {
@@ -45,11 +47,12 @@ public class User implements Serializable {
 	private String email;
 
 	@Past(message = "{Invalid.dob.past}")
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date dob;
 
 	@Column(length = 32)
 	private String title;
-
+ 
 	private Integer userNumber;
 
 	private String phoneNumber;
@@ -59,6 +62,7 @@ public class User implements Serializable {
  	UserCredentials userCredentials;
  	
 	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
+	@Valid
      private Address addresse;
 	
 	public User() {
