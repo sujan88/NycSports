@@ -9,7 +9,7 @@ $(document).ready(function() {
 		 		type: 'PUT',
 				dataType: "json",
 				success: function(){
-					
+					$("#errors_cart").hide();
 					$("#cd-cart").html("");
 					$("#cd-cart").append("<H4> Successfully Added To Cart. </H4>");
 					$("#cd-cart").append("<p> Product Id : "+$('#productId').val()+" <br/>");
@@ -19,11 +19,11 @@ $(document).ready(function() {
 					$("#cd-cart").show();
 				},
 				error: function( errorObject){						
-					$("#cd-cart").html("");
-					$("#cd-cart").append("<span> <span class='label label-warning'>Warning</span> : Please input a number. </span>");
-					$("#cd-cart").css('color','red')
-					$("#cd-cart").css('background-color','white')
-					$("#cd-cart").show();
+					$("#errors_cart").html("");
+					$("#errors_cart").append("<span> <span class='label label-warning'>Warning</span> : Please input a number. </span>");
+					$("#errors_cart").css('color','red')
+					$("#errors_cart").css('background-color','white')
+					$("#errors_cart").show();
 				}
 			});
 		}

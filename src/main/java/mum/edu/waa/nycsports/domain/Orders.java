@@ -30,14 +30,17 @@ public class Orders implements Serializable{
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn
 	private ShippingDetail shippingDetail;
-
-	//private CreditCard creditCard ;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn
+	private CreditCard creditCard ;
 	
 
 
 	public Orders() {
 		this.customer = new Customer();
 		this.shippingDetail = new ShippingDetail();
+		this.creditCard = new CreditCard();
 	}
 	
 	public Long getId() {
@@ -85,7 +88,7 @@ public class Orders implements Serializable{
 	}
 
 
-/*
+
 	public CreditCard getCreditCard() {
 		return creditCard;
 	}
@@ -94,6 +97,6 @@ public class Orders implements Serializable{
 
 	public void setCreditCard(CreditCard creditCard) {
 		this.creditCard = creditCard;
-	}*/
+	}
 
 }
