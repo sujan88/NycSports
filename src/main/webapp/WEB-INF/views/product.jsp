@@ -40,7 +40,7 @@
 				</p>
 				<p>
 					<form action="#" id="form"><input value="1" type="text" id="quantity" name="quantity"/> <input type="hidden" id="productId" name="productId" value="${product.productId}"/>
-					</form>
+					</form><span id="errors_cart" >  </span>
 				</p>
 				<h4><spring:eval expression =  "product.unitPrice" /> <spring:message code="currency.type"/></h4>
 				<p ng-controller="cartCtrl">

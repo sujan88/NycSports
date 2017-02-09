@@ -17,7 +17,7 @@
 	
 	</section>
 	<section class="container">
-		<form:form modelAttribute="shippingDetail" action="details" method="post" class="form-horizontal">
+		<form:form modelAttribute="shippingDetail" action="creditCard" method="post" class="form-horizontal">
 			<fieldset>
 				<legend>Shipping Details</legend>
 	                <p>

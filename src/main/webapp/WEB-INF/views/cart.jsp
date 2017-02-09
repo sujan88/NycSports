@@ -14,6 +14,7 @@
 <style type="text/css">@import url("<c:url value="/resource/css/cart.css"/>");</style>
 </head>
 <body>
+Language : <a href="?language=en_US">English</a>|<a href="?language=zh_CN">Chinese</a>
 	<section>
  			<div id="prod" class="container"  >
    			     <div id="result" style="display:none" > </div>
@@ -34,17 +35,17 @@
 					class="glyphicon-shopping-cart glyphicon"></span> Check out
 				</a> --%>
 				<a href="<spring:url value="/checkoutCart?cartId=${cartId}"/>" class="btn btn-success pull-right"  style="background-color:#006699;"> <span
-					class="glyphicon-shopping-cart glyphicon"></span> Check out
+					class="glyphicon-shopping-cart glyphicon"></span> <spring:message code="checkout"/>
 				</a>
 			</div>
 			<table class="table table-hover">
 				<tr>
-					<th>---ID---</th>
-					<th>Name</th>
-					<th>Unit price</th>
-					<th>Quantity</th>
-					<th>Price</th>
-					<th>Action</th>
+					<th> ID </th>
+					<th> <spring:message code="name"/></th>
+					<th><spring:message code="unitprice"/></th>
+					<th><spring:message code="quantity"/></th>
+					<th><spring:message code="price"/></th>
+					<th><spring:message code="action"/></th>
 				</tr>
 			</table>
 	<table id="cart_table" class="table table-hover">
@@ -57,7 +58,7 @@
 					<td>${item.quantity}</td>
 					<td>${item.totalPrice}</td>
 					<td><a href="#" class="label label-danger" onclick="removeFromCart('${item.product.productId}');"> <span
-							class="glyphicon glyphicon-remove" /></span> Remove
+							class="glyphicon glyphicon-remove" /></span> <spring:message code="remove"/>
 					</a></td>
 				</tr>
 		</c:forEach>
@@ -65,14 +66,14 @@
 				<tr>
 					<th></th>
 					<th></th>
-					<th>Grand Total</th>
+					<th><spring:message code="grandtotal"/></th>
 					<th>${cart.grandTotal}</th>
 					<th></th>
 				</tr>
 			</table>
 			
 			<a href="<spring:url value="/products" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> Continue shopping
+						<span class="glyphicon-hand-left glyphicon"></span><spring:message code="continueSh"/>
 			</a>
 		</div></div>
 	</section>
@@ -82,7 +83,7 @@
 	<div id="formInput" style="display:none" > 
 <p id="success" >  </p> 
 <p id="errors" >  </p>
-	<h3 align="center">Add to Cart</h3>
+	<h3 align="center"><spring:message code="addtocart"/></h3>
 
 	<!-- No action method handled by AJAX-->
 	<form id="cartForm" method="post">
@@ -91,7 +92,7 @@
           
  
          <p>
-            <label for="qty"> Quantity: </label>
+            <label for="qty"> <spring:message code="quantity"/>: </label>
             <input value="1" id="qty"  name="qty" type="text"/>
         </p>
  
@@ -99,7 +100,7 @@
     
     </form>
   <h4 align="center"> 
-     <a href="#" onclick="make_hidden('formInput');resetForm('formInput');"> <b>EXIT</b> </a> 
+     <a href="#" onclick="make_hidden('formInput');resetForm('formInput');"> <b><spring:message code="exit"/></b> </a> 
   </h4>
 
 </div>

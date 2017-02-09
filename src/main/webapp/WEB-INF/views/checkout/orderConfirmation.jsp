@@ -55,18 +55,17 @@
 						<div class="col-xs-6 col-sm-6 col-md-6">
 							<address>
 								<strong>Billing Information</strong> <br>
-								<%-- ${order.creditCard.name}   
+								${orderSession.creditCard.name}   
 								<br>
-								${order.creditCard.billingAddress.street}
+								${orderSession.creditCard.billingAddress.street}
 								<br>
-								${order.creditCard.billingAddress.state},${order.creditCard.billingAddress.zipCode}
+								${orderSession.creditCard.billingAddress.state},${order.creditCard.billingAddress.zipCode}
 								<br>
-								${order.creditCard.billingAddress.country} --%>
+								${orderSession.creditCard.billingAddress.country}
 								<br> <abbr title="Phone">Phone:</abbr>
 								${orderSession.customer.phoneNumber}
 								<br> <abbr title="CC Number">CC Number:</abbr>
-								
-								<%-- ${order.creditCard.number} --%>
+								${orderSession.creditCard.number} 
 							</address>
 						</div>
 

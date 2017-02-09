@@ -22,8 +22,8 @@ import org.springframework.format.annotation.NumberFormat.Style;
 //import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
-import mum.edu.waa.nycsports.validator.ProductId;
-import mum.edu.waa.nycsports.validator.StockMaximum;
+
+
 
 @Entity
 public class Product implements Serializable {

@@ -7,29 +7,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset="utf-8">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Confirmation </title>
+<title>Thank you </title>
 </head>
 <body>
-	<section>
-		<div class="jumbotron">
-			<div class="container">
-				<h1 class="alert alert-danger"> Thank you</h1>
-				<p>Thanks for the order. your order will be delivered to you on 
-				<fmt:formatDate type="date"	value="${shippingDate}" />!</p>
-				<p>Your Order Number is ${orderId}</p>
-			</div>
-		</div>
-	</section>
 
-	<section>
-		<div class="container">
-			<p>
-				<a href="<spring:url value="/products" />" class="btn btn-primary">
-					<span class="glyphicon-hand-left glyphicon"></span> products
-				</a>
-			</p>
-		</div>
-		
-	</section>
+
+<div class="jumbotron text-xs-center" style="background-color:white">
+  <h1 class="display-3">Thank You!</h1>
+  <p class="lead"><strong>Please check your Email. </strong> Thanks for the order. your order will be delivered to you on <strong>
+				<fmt:formatDate type="date"	value="${shippingDate}" /> </strong>!</p>
+				<p>Your Order Number is <strong>${orderId} </strong></p>
+  <hr>
+  <p>
+    You can check your details with us. <a href="">Contact us</a>
+  </p>
+  <p class="lead">
+    <a class="btn btn-primary btn-sm" href="<spring:url value="/welcome" />" role="button">Continue to homepage</a>
+  </p>
+</div>
+
+
+
 </body>
 </html>
+
+
+
