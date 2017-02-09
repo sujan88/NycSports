@@ -20,7 +20,7 @@ public class UserController {
 	@RequestMapping(value="/addUserDetails", method=RequestMethod.GET)
 	public String addUserDetailsForm(@ModelAttribute("userDetail") User user, Model model) {
 		return "addUserDetails";
-	}
+	} 
 	
 	@RequestMapping(value="/addUserDetails", method=RequestMethod.POST)
 	public String addUser(@Valid @ModelAttribute("userDetail") User user, BindingResult result, Model model) {

@@ -31,7 +31,7 @@ public class UserCredentials implements Serializable {
 	@Column(nullable = false, unique = true)
 	@NotEmpty(message="{NotEmpty.UserCredentials}")
 	String username;
-
+ 
 	@Column(nullable = false)
 	@Size(min=8, max=32, message="{Size.password}")
 	@NotEmpty(message="{NotEmpty.UserCredentials}")

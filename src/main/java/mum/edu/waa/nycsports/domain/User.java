@@ -52,7 +52,7 @@ public class User implements Serializable {
 
 	@Column(length = 32)
 	private String title;
-
+ 
 	private Integer userNumber;
 
 	private String phoneNumber;
