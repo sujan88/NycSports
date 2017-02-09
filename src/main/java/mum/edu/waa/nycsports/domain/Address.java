@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,6 +26,8 @@ public class Address implements Serializable{
 	@Size(min=2, max=2, message="{Size.state}")
  	private String state;
 
+	@Pattern(regexp="[1-9]{5}",
+	             message="{Invalid.zipCode}")
     private String zipCode;
 
 	private String country;

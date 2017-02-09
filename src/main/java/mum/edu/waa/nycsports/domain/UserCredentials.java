@@ -29,12 +29,12 @@ public class UserCredentials implements Serializable {
 
 	@Id
 	@Column(nullable = false, unique = true)
-	@NotEmpty
+	@NotEmpty(message="{NotEmpty.UserCredentials}")
 	String username;
 
 	@Column(nullable = false)
 	@Size(min=8, max=32, message="{Size.password}")
-	@NotEmpty
+	@NotEmpty(message="{NotEmpty.UserCredentials}")
 	String password;
 
 	String verifyPassword;

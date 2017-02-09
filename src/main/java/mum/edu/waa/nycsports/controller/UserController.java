@@ -23,8 +23,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/addUserDetails", method=RequestMethod.POST)
-	public String addUser(@Valid @ModelAttribute("userDetail") User user, BindingResult result) {
+	public String addUser(@Valid @ModelAttribute("userDetail") User user, BindingResult result, Model model) {
 		if(result.hasErrors()) {
+			System.out.println("Invalidation user!");
 			return "addUserDetails";
 		}
 		
