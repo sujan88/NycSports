@@ -10,12 +10,13 @@
 </head>
 <body>
 	  
-	Language : <a href="?language=en_US">English</a>|<a href="?language=zh_CN">Chinese</a>
+	Language : <a href="?language=en_US">English</a>|<a href="?language=zh_CN"> <spring:message code="chinese" text="Chinese" /> </a>
 	 
 	<h3>
 	 <spring:message code="welcome" text="Welcome to NycSports" />
 	</h3>
-	<h3> <strong>Newest Products</strong></h3>
+	<h3> <strong><spring:message code="nProducts" text="Newest Products" />
+	</strong></h3>
 <section class="container">
 		<div class="row">
 			
@@ -33,7 +34,7 @@
 								<a
 									href=" <spring:url value="/products/product?id=${product.productId}" /> "
 									class="btn btn-primary"> 
-									<span class="glyphicon-info-sign glyphicon" /></span> Details
+									<span class="glyphicon-info-sign glyphicon" /></span> <spring:message code="detail" text="Details" />
 								</a>
 							</p>
 
@@ -44,7 +45,7 @@
 		</div>
 	</section>
 	
-<h3> <strong>Cheapest Products</strong></h3>
+<h3> <strong><spring:message code="cproducts" text="Cheapest Products"/></strong></h3>
 	<section class="container">
 		<div class="row">
 			
@@ -62,7 +63,7 @@
 								<a
 									href=" <spring:url value="/products/product?id=${product.productId}" /> "
 									class="btn btn-primary"> 
-									<span class="glyphicon-info-sign glyphicon" /></span> Details
+									<span class="glyphicon-info-sign glyphicon" /></span> <spring:message code="detail" text="Details" />
 								</a>
 							</p>
 
