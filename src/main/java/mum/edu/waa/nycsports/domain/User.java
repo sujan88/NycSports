@@ -58,8 +58,8 @@ public class User implements Serializable {
  	@JoinColumn(name="user_id") 
  	UserCredentials userCredentials;
  	
-	@OneToMany
-     private List<Address> addresses = new ArrayList<Address>();
+	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
+     private Address addresse;
 	
 	public User() {
 	}
@@ -104,17 +104,12 @@ public class User implements Serializable {
 		this.userCredentials = userCredentials;
 	}
 
-	public List<Address> getAddresses() {
-		return addresses;
+	public Address getAddresse() {
+		return addresse;
 	}
 
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
-	public void addAddress(Address address) {
-		this.addresses.add(address);
-
+	public void setAddresse(Address addresse) {
+		this.addresse = addresse;
 	}
 
 	public Integer getUserNumber() {
