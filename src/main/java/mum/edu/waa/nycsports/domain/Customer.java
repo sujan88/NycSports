@@ -17,7 +17,7 @@ public class Customer implements Serializable{
 
 	private static final long serialVersionUID = 2284040482222162898L;
 	@Id
-	private String customerId;
+	private Long customerId;
 
 	@NotEmpty(message="{NotEmpty}")
 	private String name;
@@ -31,17 +31,17 @@ public class Customer implements Serializable{
 		this.billingAddress = new Address();
 	}
 	
-	public Customer(String customerId, String name) {
+	public Customer(Long customerId, String name) {
 		this();
 		this.customerId = customerId;
 		this.name = name;
 	}
 
-	public String getCustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(String customerId) {
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
 

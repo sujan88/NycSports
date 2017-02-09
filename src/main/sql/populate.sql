@@ -23,4 +23,12 @@ INSERT INTO product VALUES ('P5','2014-11-10','Google Nexus 7 is the lightest 7 
 INSERT INTO product VALUES ('P6','2014-11-10','Dell Inspiron 14-inch Laptop (Black) with 3rd Generation Intel Core processors',false, 'Google','Eliko Weight','New',800,1,1000,'Weights')
 INSERT INTO product VALUES ('P7','2014-11-10','Dell Inspiron 14-inch Laptop (Black) with 3rd Generation Intel Core processors',false, 'Google','Bumbel 10kg','New',800,1,1000,'Weights')
 INSERT INTO product VALUES ('P8','2014-11-10','Enhanced muscle growth, extended endurance, and increased muscle pumps',false, 'Google','NO2 maximize','New',600,1,1000,'Suppliment')
-	
+
+
+INSERT INTO creditcard VALUES (null,null,123,'2020-10-10', 'Sujan','1111222233334444')
+
+INSERT INTO address VALUES (null,'StatenIsland','USA','NY', 'Bord cord st','10302')
+
+INSERT INTO users VALUES (null,'1988-11-10','sujan@gmail.com', 'sujan','duminda', '122332233','Mr',1122,1,'guest')
+
+
