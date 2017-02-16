@@ -24,7 +24,7 @@
 			access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/admin/**"
 			access="hasRole('ROLE_ADMIN')" />
-
+			
 		<security:form-login login-page="/login"
 			login-processing-url="/postLogin" username-parameter="username"
 			password-parameter="password" authentication-success-handler-ref="myAuthenticationSuccessHandler"
@@ -40,7 +40,7 @@
 			seen below -->
 		<security:csrf disabled="true" />
 	</security:http>
- 
+
 	<bean id="myAuthenticationSuccessHandler"
 		class="mum.edu.waa.nycsports.controller.UrlAuthenticationSuccessHandler" />
 
