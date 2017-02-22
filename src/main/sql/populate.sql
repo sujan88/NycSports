@@ -5,12 +5,10 @@ INSERT INTO authority (username, authority) VALUES ('guest', 'ROLE_USER');
 INSERT INTO authority (username, authority) VALUES ('admin', 'ROLE_ADMIN');
 INSERT INTO authority (username, authority) VALUES ('admin', 'ROLE_USER');
 
-INSERT INTO  category VALUES ('smartphone','mobile phones');
-INSERT INTO category VALUES ('Tablet','portable medium size device');
-INSERT INTO category VALUES ('Laptop','portable computers');
+
 INSERT INTO category VALUES ('Shoes','shoes');
 INSERT INTO category VALUES ('Weights','weights');
-INSERT INTO category VALUES ('Cloths','portable computers');
+INSERT INTO category VALUES ('Cloths','fashion');
 INSERT INTO category VALUES ('Guard','Guard');
 INSERT INTO category VALUES ('Suppliment','Suppliment');
 

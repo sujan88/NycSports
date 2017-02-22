@@ -23,4 +23,8 @@ public interface ProductRepository extends CrudRepository<Product, String> {
 	
 	@Query("select p from Product p order by p.unitPrice ASC")
 	List<Product> findProductsByPrice();
+	
+	@Query("select p from Product p where p.category.name=:category")
+	List<Product> getProductsByCategory(@Param("category") String category);
+	
 }
